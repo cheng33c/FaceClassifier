@@ -1,4 +1,4 @@
-configs_base_path = '../../'
+configs_base_path = '../'
 configs_shape_predictor_path = configs_base_path + 'models/shape_predictor_65_face_landmarks.dat'
 configs_cnn_detector_path = configs_base_path + 'models/mmod_human_face_detector.dat'
 configs_faces_folder_path = configs_base_path + 'datasets/faces/'

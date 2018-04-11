@@ -267,10 +267,6 @@ class Face:
             dets, scores, idx = detector.run(img, 1, -1)
             for i, d in enumerate(dets):
                 show_score(i, d)
-    
-    class Trainer:
-        pass
-
 
 
 """ test utils start """
@@ -331,78 +327,3 @@ def load_images(image_folder_path=configs_mini_faces_folder_path):
     return image_list
 
 """ test utils end """
-
-""" test functions start """
-def test_Face_detect():
-    """Face detect测试函数"""
-    cface = Face()
-    image_list = load_images()
-    cface.detect(image_list)
-
-def test_Face_landmark_detect():
-    """Face landmark detect测试函数"""
-    cface = Face()
-    image_list = load_images()
-    cface.landmark_detect(image_list)
-
-def test_Face_recognition():
-    """Face recognition测试函数"""
-    cface = Face()
-    image_list = load_images()
-    cface.recognition(image_list)
-
-def test_Face_cnn_detect():
-    """Face cnn detect测试函数"""
-    cface = Face()
-    image_list = load_images()
-    cface.cnn_detect(image_list)
-
-def test_Face_alignment():
-    """Face alignment测试函数"""
-    cface = Face()
-    image_list = load_images()
-    cface.alignment(image_list)
-
-def test_Face(function_name=None, image_folder=None):
-    """
-    Face测试函数， 用于代替前面的测试函数
-    function_name: 输入函数名
-    image_folder: 图片文件夹
-    """
-    assert function_name, "function_name不能为空"
-    cface = Face()
-    if image_folder != None:
-        image_list = load_images(image_folder)
-    else:
-        image_list = load_images()
-    if function_name == 'detect':
-        cface.detect(image_list)
-    elif function_name == 'cnn_detect':
-        cface.cnn_detect(image_list)
-    elif function_name == 'landmark_detect':
-        cface.landmark_detect(image_list)
-    elif function_name == 'recognition':
-        cface.recognition(image_list)
-    elif function_name == 'alignment':
-        cface.alignment(image_list)
-    elif function_name == 'clustering':
-        cface.clustering(image_list)
-    elif function_name == 'jitter':
-        cface.clustering(image_list)
-    
-
-""" test functions end """
-
-
-# 供测试用
-if __name__ == '__main__':
-    # 调用你想要测试的函数
-    #test_Face_detect()
-    #test_Face_landmark_detect()
-    #test_Face_recognition()
-    #test_Face_cnn_detect()
-    #test_Face_alignment()
-    #test_Face('detect')
-    #test_Face('clustering', configs_mini_faces_folder_path)
-    test_Face('jitter', configs_mini_faces_folder_path)
-    pass
