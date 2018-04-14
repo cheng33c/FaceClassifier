@@ -14,7 +14,7 @@ class Face:
     2.基于视频的各种分类器
     3.更好的人脸识别程序，可以通过一张照片识别某个特定的人脸
     """
-    def __init__(self):
+    def __init__(self, image_list=None):
         pass
 
     def detect(self, image_list=None):
@@ -133,6 +133,7 @@ class Face:
 
     def alignment(self, image_list, 
                     shape_predictor_path=configs_shape_predictor_path):
+        """图像对齐函数"""
         assert image_list,\
                 'image_list不能为空'
         assert os.path.exists(shape_predictor_path),\
@@ -174,9 +175,9 @@ class Face:
         这里图片不能使用黑白的，否则报错：
         RuntimeError: Unsupported image type, must be RGB image.
         """
-        assert_path(shape_predictor_path)
-        assert_path(recognition_model_path)
-        assert_imagelist(image_list)
+        #assert_path(shape_predictor_path)
+        #assert_path(recognition_model_path)
+        #assert_imagelist(image_list)
         if not os.path.isdir(output_folder_path):
             os.makedirs(output_folder_path)
 
@@ -247,6 +248,10 @@ class Face:
         RuntimeError: Unsupported image type, must be RGB image.
         """
         detector = dlib.get_frontal_face_detector()
+        shape_predictor = dlib.shape_predictor(predictor_path)
+
+        bgr_img = cv2.imread()
+
         for i in image_list:
             img = io.imread(i)
             dets = detector(img, 1)

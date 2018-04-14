@@ -1,5 +1,5 @@
 import os
-def assert_path(path):
+def assert_dispatch_path(path):
     assert os.path.exists(path),\
             "路径{}不存在".format(path)
 
