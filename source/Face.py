@@ -243,6 +243,7 @@ class Face:
                 shape_predictor_path=configs_shape_predictor_path,):
         """
         面部抖动/增强来为面部识别模型创建训练数据
+        当人脸与背景色十分相近甚至融合的时候，增强就很有用
         输入图片和干扰色，随机变换
         这里图片不能使用黑白的，否则报错：
         RuntimeError: Unsupported image type, must be RGB image.

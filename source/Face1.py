@@ -36,6 +36,15 @@ class Face:
         self.shape_predictor_path = shape_predictor_path
         self.recognition_model = recognition_model_path
         self.output_folder_path = output_folder_path
+        self.func_table = {
+            'detect': detect,
+            'cnn_detect': cnn_detect,
+            'recognition': recognition,
+            'alignment': alignment,
+            'landmark_detect': landmark_detect,
+            'clustering': clustering,
+            'jitter': jitter,
+        }
 
     def extract(self, image_list=None):
         """
@@ -104,8 +113,11 @@ class Face:
         """
         function_name()
     
-    def image_processing(self):
-        pass
+    def image_processing(self, function_name):
+        for i in self.image_list:
+            print('正在处理文件:'.format(i))
+            img = io.imread(i)
+            pass
 
 
     def detect(self):
@@ -296,7 +308,7 @@ class Face:
         if not os.path.isdir(self.output_folder_path):
             os.makedirs(self.output_folder_path)
         # 保存提取出来的脸部
-        print('正在保存最大s聚类到脸部文件夹{}'.format(self.output_folder_path))
+        print('正在保存最大聚类到脸部文件夹{}'.format(self.output_folder_path))
         for i, index in enumerate(indices):
             img, shape = images[index]
             file_path = os.path.join(self.output_folder_path, 'face_' + str(i))
@@ -399,5 +411,5 @@ if __name__ == '__main__':
     image_list = load_images(configs_mini_faces_folder_path)
     #face.start('detect', image_list)
     face.start('clustering', image_list,
-     shape_predictor_path=configs_shape_predictor_path, 
-     recognition_model_path=configs_recognition_model_path)
+                shape_predictor_path=configs_shape_predictor_path, 
+                recognition_model_path=configs_recognition_model_path)
