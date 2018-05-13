@@ -9,8 +9,9 @@ from utils.assistant import load_detection_model, load_image
 from utils.preprocessor import preprocess_input
 
 # 图片路径
-# image_path = sys.argv[1]
-image_path = '../datasets/mini_faces/file0001.jpg'
+image_path = sys.argv[1]
+save_path = '../output/' + sys.argv[1].split('/')[-1]
+# image_path = '../datasets/mini_faces/file0001.jpg'
 if image_path == None:
     print('image_path不能为空，调用方法:python3 image_emotion.py myimage.jpg')
     exit(1)
@@ -78,3 +79,5 @@ for face_coordinates in faces:
 
 bgr_image = cv2.cvtColor(rgb_image, cv2.COLOR_RGB2BGR)
 cv2.imwrite('../output/predicted_test_image.png', bgr_image)
+print(save_path)
+cv2.imwrite(save_path, bgr_image)

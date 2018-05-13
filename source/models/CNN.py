@@ -103,6 +103,9 @@ def simpler_CNN(input_shape, num_classes):
     return model
 
 def mini_XCEPTION(input_shape, num_classes, l2_regularization=0.01):
+    '''
+    简单的XCEPTION网络
+    '''
     regularization = l2(l2_regularization)
     
     # base

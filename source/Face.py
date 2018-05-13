@@ -3,7 +3,6 @@ import dlib
 import glob
 import cv2
 from skimage import io
-from asserts import *
 from configs import *
 
 class Face:
@@ -23,7 +22,6 @@ class Face:
         1.经典梯度直方图(HOG,classic Histogram of Oriented Gradients)
         2.线性分类器
         HOG: 这是种图像金字塔和滑动窗口检测方案，还可以检测其他半刚性物体
-        无法识别人脸的图片(gen4ki): 老太婆的人脸无法识别
         """
         assert image_list,\
                 "image_list不能为空,请载入一个image_list"
@@ -47,8 +45,7 @@ class Face:
         detector_path: 加载探测器路径
         CNN模型比HOG模型更精确些，但速度更慢。有GPU才能达到HOG的速度
         """
-        assert image_list,\
-                "image_list不能为空，请载入一个image_list"
+        assert image_list, "image_list不能为空，请载入一个image_list"
         detector = dlib.cnn_face_detection_model_v1(detector_path)
         for i in image_list:
             print('正在处理文件: {}'.format(i))
@@ -327,9 +324,15 @@ def load_images(image_folder_path=configs_mini_faces_folder_path):
     assert os.path.exists(image_folder_path),\
             "图片文件夹不存在"
     image_list = []
-    for root, dirs, files in os.walk(image_folder_path, topdown=False):
+    for root, _, files in os.walk(image_folder_path, topdown=False):
         for file in files:
             image_list.append(os.path.join(root, file))
     return image_list
 
 """ test utils end """
+
+
+if __name__ == '__main__':
+    face = Face()
+    face.detect(['2018-4-20-21-54-57.jpg'])
+    

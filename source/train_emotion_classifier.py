@@ -10,10 +10,9 @@ batch_size = 32 # 批量训练数据大小
 epochs = 10000 # 训练轮数
 input_shape = (64, 64, 1) # 图片矩阵
 validation_split = .2 # 验证集大小
-verbose = 1
 num_classes = 7 # 类数
 patience = 50 # 信心值，用于后面的EarlyStopping等,在信心值个epochs过去后模型性能不再提升，就执行指定动作
-base_path = '../trained_models/emotion_models'
+base_path = '../datasets/trained_models/emotion_models/'
 
 # 数据生成
 data_generator = ImageDataGenerator(
@@ -60,5 +59,5 @@ for dataset_name in datasets:
     model.fit_generator(
         data_generator.flow(train_faces, train_emotions, batch_size),
         steps_per_epoch=len(train_faces) / batch_size,
-        epochs=num_epochs, verbose=1, callbacks=callbacks, validation_data=val_data
+        epochs=epochs, verbose=1, callbacks=callbacks, validation_data=val_data
     )
